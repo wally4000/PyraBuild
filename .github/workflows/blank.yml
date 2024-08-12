@@ -27,7 +27,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: apt install
-        run: apt install git f2fs-tools debootstrap systemd-container pv qemu-user-static binfmt-support initramfs-tools-core curl zstd
+        run: sudo apt install -y git f2fs-tools debootstrap systemd-container pv qemu-user-static binfmt-support initramfs-tools-core curl zstd
 
       - name: build image
         run:  ./makeimg.sh pyraroot.img 4G pyra-meta-mate
