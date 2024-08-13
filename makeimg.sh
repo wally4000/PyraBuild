@@ -1,6 +1,5 @@
 #!/bin/sh
 
-
 check_exists() { if ! hash "$1" 2>/dev/null ; then echo "$1" not found ; exit 1 ; fi ; }
 
 
