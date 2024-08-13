@@ -34,7 +34,7 @@ jobs:
               qemu-user-static binfmt-support initramfs-tools-core curl zstd \
               fdisk \
       - name: Run Makeimg
-        run: ./makeimg.sh pyra.img 4G pyra-meta-mate
+        run: sudo ./makeimg.sh pyra.img 4G pyra-meta-mate
       # - name: Set up Docker Buildx
       #   uses: docker/setup-buildx-action@v2
 
