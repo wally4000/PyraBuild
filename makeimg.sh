@@ -9,7 +9,7 @@ check_exists sfdisk
 check_exists losetup
 check_exists dd
 check_exists mke2fs
-check_exists mkfs.f2fs
+# check_exists mkfs.f2fs
 check_exists debootstrap
 
 
@@ -24,7 +24,7 @@ update-binfmts --enable qemu-arm
 IMAGENAME="$1"
 IMAGESIZE="$2"
 
-OS=bullseye
+OS=bookworm
 
 
 # We only support buster and beyond, cover a few newer OSes
@@ -95,7 +95,7 @@ dd if="${DATA}"/uboot/u-boot.img of="$LOOPDEV" count=2 seek=1 bs=384k conv=notru
 
 # Setup the Filesystem on partitions and mount
 mke2fs  -L boot "$PART_BOOT"
-mkfs.f2fs  -f -O encrypt -l rootfs "$PART_ROOTFS"
+mkfs.ext2  -f -O encrypt -l rootfs "$PART_ROOTFS"
 
 ROOTFS=$(mktemp -d)
 mount "${PART_ROOTFS}" "${ROOTFS}"
@@ -170,7 +170,7 @@ cat > "${ROOTFS}"/etc/fstab << EOF
 # that works even if disks are added and removed. See fstab(5).
 #
 # <file system> <mount point>   <type>  <options>       <dump>  <pass>
-PARTUUID=${ROOTPARTUUID}  /               f2fs    defaults        0       1
+PARTUUID=${ROOTPARTUUID}  /               ext2    defaults        0       1
 PARTUUID=${BOOTPARTUUID}  /boot           ext4    defaults        0       1
 
 EOF
