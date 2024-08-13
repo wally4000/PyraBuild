@@ -33,6 +33,8 @@ jobs:
               git debootstrap systemd-container pv \
               qemu-user-static binfmt-support initramfs-tools-core curl zstd \
               fdisk \
+      - name: Run binfmt update
+        run: update-binfmts --enable qemu-arm
       - name: Run Makeimg
         run: sudo ./makeimg.sh pyra.img 4G pyra-meta-mate
       # - name: Set up Docker Buildx
