@@ -18,18 +18,19 @@ jobs:
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
-    runs-on: debian-latest
+    runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout Code
       - uses: actions/checkout@v4
-      - name: Validate f2fs support
-        run: ls /lib/modules/$(uname -r)/kernel/fs/f2fs
-         
-      # Runs a single command using the runners shell
-      - name: apt install
-        run: sudo apt install -y git f2fs-tools debootstrap systemd-container pv qemu-user-static binfmt-support initramfs-tools-core curl zstd
 
-      - name: build image
-        run: sudo ./makeimg.sh pyraroot.img 4G pyra-meta-mate
+      - name: Setup Docker Buildx
+      - uses: docker/setup-buildx-action@v2
+
+      - name: Pull Docker image
+        run: docker pull wally4000/pyra-build
+
+      - name: Run Docker Container
+        run:  | 
+          docker run --rm -v ${{ github.workspace }}:/workspace -w /workspace wally4000/pyra-build /bin/sh -c ./makeimg.sh pyra.img 4G pyra-meta-mate
