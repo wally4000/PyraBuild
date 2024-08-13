@@ -98,6 +98,7 @@ mke2fs  -L boot "$PART_BOOT"
 mkfs.ext2  -O encrypt -L rootfs "$PART_ROOTFS"
 
 ROOTFS=$(mktemp -d)
+mkdir -p "${ROOTFS}"
 mount "${PART_ROOTFS}" "${ROOTFS}"
 
 mkdir "${ROOTFS}"/boot
@@ -105,7 +106,7 @@ mount "${PART_BOOT}" "${ROOTFS}"/boot
 
 mkdir -p "${DATA}/cache/debootstrap"
 mkdir -p "${DATA}/cache/apt"
-
+kidir -p "${DATA}/keyrings"
 curl -ffSL https://ftp-master.debian.org/keys/archive-key-$OS_VERSION.asc | sudo gpg --dearmor -o "${DATA}/keyrings/debian-archive-keyring-$OS_VERSION.gpg"
 
 #Build image 
