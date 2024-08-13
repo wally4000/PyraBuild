@@ -24,6 +24,15 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+      - name: Fetch apt repo
+        run: | 
+              apt-update
+              apt-get install -y --no-install-recommends \
+              f2fs-tools \
+              util-linux \
+              git debootstrap systemd-container pv \
+              qemu-user-static binfmt-support initramfs-tools-core curl zstd \
+              fdisk \
       - name: Run Makeimg
         run: ./makeimg.sh pyra.img 4G pyra-meta-mate
       # - name: Set up Docker Buildx
