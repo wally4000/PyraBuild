@@ -39,11 +39,9 @@ jobs:
         run: update-binfmts --enable qemu-arm
       
       - name: Run Makeimg
-        run: sudo ./makeimg.sh pyra.img 4G pyra-meta-mate
-      
-      - name: Run SD Installer
-        run: sudo ./sd-installer.sh pyra.img
-
+        run: |
+          sudo ./makeimg.sh pyra.img 4G pyra-meta-mate
+          sudo ./sd-installer.sh pyra.img
 
       - name: Upload Artifact
         if: ${{ success() }}
