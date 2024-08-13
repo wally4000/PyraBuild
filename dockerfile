@@ -11,6 +11,7 @@ RUN apt-get update && \
     util-linux \
     git debootstrap systemd-container pv \
     qemu-user-static binfmt-support initramfs-tools-core curl zstd \
+    sfdisk \
     && rm -rf /var/lib/apt/lists/*
 
 RUN git config --global http.sslverify false
