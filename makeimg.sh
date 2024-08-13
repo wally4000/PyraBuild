@@ -106,7 +106,7 @@ mount "${PART_BOOT}" "${ROOTFS}"/boot
 
 mkdir -p "${DATA}/cache/debootstrap"
 mkdir -p "${DATA}/cache/apt"
-kidir -p "${DATA}/keyrings"
+mkdir -p "${DATA}/keyrings"
 curl -ffSL https://ftp-master.debian.org/keys/archive-key-$OS_VERSION.asc | sudo gpg --dearmor -o "${DATA}/keyrings/debian-archive-keyring-$OS_VERSION.gpg"
 
 #Build image 
