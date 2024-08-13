@@ -33,4 +33,4 @@ jobs:
 
       - name: Run Docker Container
         run:  | 
-              docker run --rm my-docker-image:latest /bin/sh -c "./makeimg.sh pyra.img 4G pyra-meta-mate"
+              docker run --rm pyra-build:latest /bin/sh -c "./makeimg.sh pyra.img 4G pyra-meta-mate"
