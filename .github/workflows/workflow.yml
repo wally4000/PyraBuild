@@ -33,7 +33,7 @@ jobs:
 
       - name: Run Docker Container
         run: |
-          docker run -i pyra-build:latest /bin/bash -c "/home/PyraBuild/makeimg.sh pyra.img 4G pyra-meta-mate"
+          docker run -i pyra-build:latest -c "/home/PyraBuild/makeimg.sh pyra.img 4G pyra-meta-mate"
 
 
       - name: Clean up Docker container
