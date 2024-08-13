@@ -37,18 +37,10 @@ jobs:
         run: update-binfmts --enable qemu-arm
       - name: Run Makeimg
         run: sudo ./makeimg.sh pyra.img 4G pyra-meta-mate
-      # - name: Set up Docker Buildx
-      #   uses: docker/setup-buildx-action@v2
 
-      # - name: Build Docker image
-      #   run: docker build -t pyra-build:latest .
-
-      # - name: Run Docker Container
-      #   run: |
-      #     docker run -i pyra-build:latest -c "/home/PyraBuild/makeimg.sh pyra.img 4G pyra-meta-mate"
-
-
-      # - name: Clean up Docker container
-      #   run: |
-      #     docker stop pyra-build-container
-      #     docker rm pyra-build-container
+      -name: Upload Artifact 
+      if: ${{ success() }}
+      uses: actions/upload-artifact@v4
+      with:
+            name: PyraOS
+            path: pyra-installer.tar
