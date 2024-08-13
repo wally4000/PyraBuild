@@ -182,6 +182,7 @@ EOF
 
 
 rm "${ROOTFS}"/var/cache/apt/* -rf
+# This step requires armHF so we use qemu-arm-static to build
 systemd-nspawn  --bind="${DATA}"/installer:/installer --bind="${DATA}"/cache/apt:/var/cache/apt -D "${ROOTFS}" -a /config.sh "${PACKAGES}"
 
 #######################################################
