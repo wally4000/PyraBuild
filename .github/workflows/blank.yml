@@ -24,7 +24,9 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
-
+      - name: Validate f2fs support
+        run: ls /lib/modules/$(uname -r)/kernel/fs/f2fs
+         
       # Runs a single command using the runners shell
       - name: apt install
         run: sudo apt install -y git f2fs-tools debootstrap systemd-container pv qemu-user-static binfmt-support initramfs-tools-core curl zstd
