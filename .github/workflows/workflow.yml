@@ -38,7 +38,7 @@ jobs:
       - name: Run Makeimg
         run: sudo ./makeimg.sh pyra.img 4G pyra-meta-mate
 
-      -name: Upload Artifact 
+      - name: Upload Artifact 
       if: ${{ success() }}
       uses: actions/upload-artifact@v4
       with:
