@@ -16,7 +16,7 @@ check_exists debootstrap
 if [ "$#" -lt 3 ] ; then echo "Usage: $0 output.img imagesize packages ( $0 output.img 4G pyra-meta-mate )" ; exit 1; fi
 
 #modprobe f2fs as it'll error out when mounting
-modprobe f2fs
+# modprobe f2fs
 
 #Update binfmt, this only needs to be done on non ARM platforms
 update-binfmts --enable qemu-arm
@@ -95,7 +95,7 @@ dd if="${DATA}"/uboot/u-boot.img of="$LOOPDEV" count=2 seek=1 bs=384k conv=notru
 
 # Setup the Filesystem on partitions and mount
 mke2fs  -L boot "$PART_BOOT"
-mkfs.ext2  -f -O encrypt -l rootfs "$PART_ROOTFS"
+mkfs.ext2  -O encrypt -L rootfs "$PART_ROOTFS"
 
 ROOTFS=$(mktemp -d)
 mount "${PART_ROOTFS}" "${ROOTFS}"
