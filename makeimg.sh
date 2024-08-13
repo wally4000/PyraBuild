@@ -157,6 +157,8 @@ cat << EOF >> "${ROOTFS}"/etc/apt/sources.list.d/pyra-packages.list
 deb [arch=armhf signed-by=/usr/share/keyrings/pyra-public.gpg] http://packages.pyra-handheld.com/ ${PYRA_ARCHIVE}/
 EOF
 
+chmod +x "${DATA}"/config.sh
+chmod +x "${DATA}"/settings.debconf
 cp "${DATA}"/config.sh "${ROOTFS}"/
 cp "${DATA}"/settings.debconf "${ROOTFS}"/settings.debconf
 
