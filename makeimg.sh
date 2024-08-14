@@ -21,9 +21,9 @@ if [ "$#" -lt 3 ] ; then echo "Usage: $0 output.img imagesize packages ( $0 outp
 #Update binfmt, this only needs to be done on non ARM platforms
 update-binfmts --enable qemu-arm
 
-# IMAGENAME="$1"
+IMAGENAME="$1"
 IMAGESIZE="$2"
-IMAGENAME="Pyra"
+# IMAGENAME="Pyra"
 # IMAGESIZE="4G"
 
 OS=bookworm
